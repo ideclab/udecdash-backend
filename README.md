@@ -1,5 +1,19 @@
 # UDECDash Backend
+
 UDECDash Backend es un componente de UDECDash, visite la wiki del repositorio para encontrar más información sobre este y otros componentes.
+
+````
+Copyright (C) <2021> <IDECLab>
+
+Esta biblioteca es software gratuito; puedes redistribuirlo y/o
+modificarlo bajo los términos del GNU Lesser General Public
+Licencia publicada por la Free Software Foundation; cualquiera
+versión 2.1 de la Licencia, o (a su elección) cualquier versión posterior.
+Esta biblioteca se distribuye con la esperanza de que sea útil,
+pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de
+COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO EN PARTICULAR. Ver el GNU
+Licencia pública general menor para obtener más detalles.
+````
 
 ## Requisitos
 - Php 8.0
@@ -15,7 +29,7 @@ Se recomienda utilizar Redis como driver de caché.
 
 1) Descarga el proyecto
 
-`git clone https://github.com/xxxxx/interactive_dashboard_backend/`
+`git clone https://github.com/ideclab/udecdash-backend.git`
 
 2) Instala las dependencias
 

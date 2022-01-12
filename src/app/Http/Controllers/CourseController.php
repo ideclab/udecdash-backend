@@ -41,6 +41,9 @@ class CourseController extends Controller
                     isset($status[$course->course_canvas_id][0])){
                         $update = $status[$course->course_canvas_id][0];
                         $course->update->status = $update->process_status;
+                        if($this->hasExpiredCache($status[$course->course_canvas_id][0])){
+                            $course->update->status = 'NEVER_UPDATED';
+                        }
                         $course->update->created_at = $this->toChileTz($update->created_at);
                         $course->update->finished_at = $this->toChileTz($update->finished_at);
                 }
@@ -65,6 +68,15 @@ class CourseController extends Controller
             array_push($output, $term);
         }
         return response()->json($output);
+    }
+
+    private function hasExpiredCache (object $update_request) : bool {
+        if(empty($update_request->cache_expires)){
+            return true;
+        }
+        $now = Carbon::now('America/Santiago');
+        $expire = Carbon::createFromFormat("Y-m-d H:i:s", $update_request->cache_expires, 'America/Santiago');
+        return $now->gte($expire);
     }
 
     private function toChileTz(?string $date, string $format = 'Y-m-d H:i:s'){

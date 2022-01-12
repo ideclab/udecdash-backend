@@ -36,11 +36,10 @@ class ProcessCourseInteractions implements ShouldQueue
     public function handle() {
         $start = time();
         Log::debug('[ProcessCourseInteractions::class] [handle] recovery course processiong request => ', [$this->request]);
-        $processed_logs = $this->request->processInteractions();
+        $this->request->processInteractions();
         $this->rebuildReports();
         $this->request->process_status = 'FINISHED';
         $this->request->processing_time = $this->secondsToNow($start);
-        $this->request->processed_logs = $processed_logs;
         $this->request->finished_at = Carbon::now();
         $this->request->save();
         $this->notifyCompletion();

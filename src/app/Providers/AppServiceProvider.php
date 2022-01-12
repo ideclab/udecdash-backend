@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Models\AccessCode;
 use App\Models\AttachmentInteraction;
+use App\Models\CanvasMail;
 use App\Models\User;
 use App\Observers\AccessCodeObserver;
 use App\Observers\AttachmentObserver;
+use App\Observers\CanvasMailObserver;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -31,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
     {
         AttachmentInteraction::observe(AttachmentObserver::class);
         AccessCode::observe(AccessCodeObserver::class);
+        CanvasMail::observe(CanvasMailObserver::class);
     }
 }

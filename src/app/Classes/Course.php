@@ -46,7 +46,7 @@ class Course {
 
     public static function getLastUpdateRequest(array $ids, array $columns = []) : Collection {
         if(empty($columns)){
-            $columns = ['id','process_status','course_canvas_id', 'created_at', 'finished_at'];
+            $columns = ['id','process_status','course_canvas_id', 'created_at', 'finished_at','cache_expires'];
         }
         $status = array();
         $last_records_id = DB::table('course_processing_requests')

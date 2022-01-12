@@ -99,7 +99,9 @@ class Interaction {
     }
 
     public function deleteAssociateLog() : void {
-        // Log::emergency("[Interaction::class] [delete] This log was deleted from database =>", [$this->log]);
-        // DB::table('requests')->where('local_id', $this->log->local_id)->delete();
+        Log::debug("[Interaction::class] [delete] This log was deleted from database =>", [$this->log]);
+        if(env('DELETE_REQUEST_AFTER_PROCESS', false)){
+            DB::table('requests')->where('local_id', $this->log->local_id)->delete();
+        }
     }
 }

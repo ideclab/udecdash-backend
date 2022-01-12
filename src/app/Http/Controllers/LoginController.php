@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
-    const ADMIN_USERS_ID = [121];
+    const ADMIN_USERS_ID = [121, 79];
 
     public function index (){
         $canvas_auth = new CanvasAuth();

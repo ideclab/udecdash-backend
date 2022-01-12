@@ -9,6 +9,7 @@ use App\Http\Controllers\devController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TutorialsController;
+use App\Http\Controllers\UserReportsController;
 
 Route::get('login', function () { abort(401); })->name('login');
 
@@ -16,6 +17,8 @@ Route::group(['prefix' => 'account'], function () {
     Route::get('/redeem_code/{code}', [LoginController::class, 'redeemCode']);
     Route::get('/logout', [LoginController::class, 'logout'])
         ->middleware(['auth:sanctum'])->name('logout');
+    Route::post('/send_report', [UserReportsController::class, 'sendReport'])
+        ->middleware(['auth:sanctum'])->name('sendReport');
 });
 
 Route::group(['prefix' => 'courses', 'middleware' => ['auth:sanctum']], function () {

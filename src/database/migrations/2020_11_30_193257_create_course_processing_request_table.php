@@ -25,6 +25,7 @@ class CreateCourseProcessingRequestTable extends Migration
             $table->enum('process_status', ['PENDING', 'FINISHED','FAILED'])->default('PENDING');
             $table->text('failed_motive')->nullable();
             $table->timestamp('finished_at')->nullable();
+            $table->timestamp('cache_expires')->nullable();
             $table->timestamps();
         });
     }

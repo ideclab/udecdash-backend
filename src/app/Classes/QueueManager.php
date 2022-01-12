@@ -67,6 +67,7 @@ class QueueManager {
     }
 
     public function add() : bool {
+        $this->setRequestCacheExpiration();
         $added = false;
         $queue = $this->getQueue();
         if(!is_null($queue)){
@@ -75,6 +76,12 @@ class QueueManager {
             $this->updateCourseProcessingRequest();
         }
         return $added;
+    }
+
+    private function setRequestCacheExpiration() : void {
+        $seconds_to_expire = (int) env('CACHE_LIFETIME', 0);
+        $expires_at = Carbon::now('America/Santiago')->addSeconds($seconds_to_expire);
+        $this->request->cache_expires = $expires_at;
     }
 
     public function getEstimatedTime() : string {

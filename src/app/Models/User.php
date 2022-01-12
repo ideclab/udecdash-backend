@@ -70,7 +70,7 @@ class User extends Authenticatable
     }
 
     public function getCanvasToken() : ?string {
-        $token = CanvasToken::find($this->canvas_id)->first();
+        $token = CanvasToken::where('user_canvas_id', $this->canvas_id)->first();
         if(!$token->isValid()){
             $token->refresh();
         }
